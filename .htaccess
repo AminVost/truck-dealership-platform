@@ -1,0 +1,49 @@
+RewriteEngine On
+IndexIgnore * 
+DirectoryIndex index.php 
+AddDefaultCharset utf-8
+
+Options +FollowSymlinks 
+# ======================================================================================================
+#                                       Search
+# ======================================================================================================
+RewriteRule ^search/action/?$ index.php?type=search.action [NC,L]
+RewriteRule ^search/?$ index.php?type=search [NC,L]
+RewriteRule ^search/([^\.]+)/?$ index.php?type=search&keyword=$1 [NC,L]
+# ======================================================================================================
+#                                        brands                                                           
+# ======================================================================================================
+RewriteRule ^brands/([^\.]+)/page,([^\.]+)/?$ index.php?type=brands&alias=$1&page=$2 [NC,L]
+RewriteRule ^brands/([^\.]+)/?$ index.php?type=brands&alias=$1 [NC,L]
+RewriteRule ^brand/([^\.]+)/?$ index.php?type=brand.details&alias=$1 [NC,L]
+# ======================================================================================================
+#                                        Blog                                                            
+# ======================================================================================================
+RewriteRule ^blog/category/([^\.]+)/page,([^\.]+)/?$ index.php?type=blog&alias=$1&page=$2 [NC,L]
+RewriteRule ^blog/category/([^\.]+)/?$ index.php?type=blog&alias=$1 [NC,L]
+RewriteRule ^blog/tag/([^\.]+)/page,([^\.]+)/?$ index.php?type=blog&tag_alias=$1&page=$2 [NC,L]
+RewriteRule ^blog/tag/([^\.]+)/?$ index.php?type=blog&tag_alias=$1 [NC,L]
+RewriteRule ^blog/page,([^\.]+)/?$ index.php?type=blog&page=$1 [NC,L]
+RewriteRule ^blog/([^\.]+)/?$ index.php?type=blog.details&alias=$1 [NC,L]
+# ======================================================================================================
+#                                       Services
+# ======================================================================================================
+ RewriteRule ^service/page,([^\.]+)/?$ index.php?type=services&page=$1 [NC,L]
+ RewriteRule ^services/category/([^\.]+)/page,([^\.]+)/?$ index.php?type=blog&alias=$1&page=$2 [NC,L]
+ RewriteRule ^services/category/([^\.]+)/?$ index.php?type=blog&alias=$1 [NC,L]
+ RewriteRule ^service/([^\.]+)/?$ index.php?type=services.details&alias=$1 [NC,L]
+# ======================================================================================================
+#                                     Other Modules
+# ======================================================================================================
+RewriteRule ^help/([^\.]+)/?$ index.php?type=help&alias=$1 [NC,L]
+# ======================================================================================================
+#                                        Global
+# ======================================================================================================
+RewriteRule ^([^\.]+)/([^\.]+)/page,([^\.]+)/?$ index.php?type=$1&alias=$2&page=$3 [NC,L]
+RewriteRule ^([^\.]+)/page,([^\.]+)/?$ index.php?type=$1&page=$2 [NC,L]
+RewriteRule ^([^\.]+)/([^\.]+)/?$ index.php?type=$1&alias=$2 [NC,L]
+RewriteRule ^([^\.]+)/?$ index.php?type=$1 [NC,L]
+RewriteRule ^(.*)/assets/(.*)$ assets/$2
+RewriteRule ^(.*)/uploads/(.*)$ uploads/$2
+RewriteRule ^sitemap.xml?$ pages/sitemap.xml.php?type=links [NC,L]
+Options +Indexes
